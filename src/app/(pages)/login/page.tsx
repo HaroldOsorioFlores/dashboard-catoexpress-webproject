@@ -8,6 +8,7 @@ export default function LoginPage() {
           <div className="w-32 text-white md:w-36">
           </div>
         </div>
+        hola
       </div>
     </main>
   );
