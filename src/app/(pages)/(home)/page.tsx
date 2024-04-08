@@ -1,7 +1,6 @@
 import Image from "next/image";
 
-import { LoginFormModal } from "@/components";
-import { CatoexpressLogo } from "@/components/icons";
+import { CatoexpressLogo, LoginFormModal } from "@/components";
 
 export default function Home() {
   return (
