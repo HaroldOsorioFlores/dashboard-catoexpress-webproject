@@ -1,4 +1,4 @@
-import { Aside } from "@/components";
+import { Aside, NavbarDashboard } from "@/components";
 
 export default function DashboardLayout({
   children,
@@ -8,6 +8,7 @@ export default function DashboardLayout({
   return (
     <>
       <Aside />
+      <NavbarDashboard />
       {children}
     </>
   );

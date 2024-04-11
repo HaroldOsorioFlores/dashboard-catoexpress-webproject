@@ -1,6 +1,6 @@
 "use client"
 
-import { LayoutDashboard, Menu, Settings, User, Users } from "lucide-react"
+import { LayoutDashboard, LogOut, Menu, Settings, User, Users } from "lucide-react"
 
 import { CatoexpressLogo } from "../icons"
 import { DropdownAside, LinkAside } from "../ui"
@@ -13,7 +13,7 @@ export const Aside = () => {
       <span className="sr-only">Abrir menu de navegacion</span>
       <Menu />
     </button>
-    <aside id="sidebar-multi-level-sidebar" className={`md:fixed absolute top-0 sm:left-0 ${visibleComponent ? `left-64` : `left-[-200px]`} z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 ease-in shadow-md`} aria-label="Sidebar" ref={ref}>
+    <aside id="sidebar-multi-level-sidebar" className={`md:fixed absolute top-0 sm:left-0 ${visibleComponent ? `left-64` : `left-[-200px]`} z-40 w-64 h-screen  -translate-x-full sm:translate-x-0 ease-in shadow-md transition-all`} aria-label="Sidebar" ref={ref}>
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50">
         <CatoexpressLogo className="h-[5rem] w-[10rem] mx-auto mb-7" fill="#166534" />
         <ul className="space-y-2 font-medium">
@@ -48,4 +48,8 @@ const dataOptionsAside = [{
   label: "Usuarios",
   href: "/dashboard",
   icon: <Users className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
+}, {
+  label: "Cerrar Sesion",
+  href: "/",
+  icon: <LogOut className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900" />
 }]

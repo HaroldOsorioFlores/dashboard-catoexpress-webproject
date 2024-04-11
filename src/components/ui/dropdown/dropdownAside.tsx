@@ -1,18 +1,19 @@
 "use client"
 
 import { ChevronDown, ShoppingCart } from "lucide-react"
-import Link from "next/link"
 import { useState } from "react"
+
+import Link from "next/link"
 
 const dataModules = [{
   title: "Ceprobis UCSM",
-  path: "/dashboard",
+  path: "/dashboard/module/Ceprobis UCSM",
 }, {
   title: "Panificadora UCSM",
-  path: "/dashboard",
+  path: "/dashboard/module/Panificadora UCSM",
 }, {
   title: "El Cholo",
-  path: "/dashboard",
+  path: "/dashboard/module/El Cholo",
 }]
 
 export const DropdownAside = () => {
