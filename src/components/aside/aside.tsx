@@ -15,7 +15,7 @@ export const Aside = () => {
     </button>
     <aside id="sidebar-multi-level-sidebar" className={`md:fixed absolute top-0 sm:left-0 ${visibleComponent ? `left-64` : `left-[-200px]`} z-40 w-64 h-screen  -translate-x-full sm:translate-x-0 ease-in shadow-md transition-all`} aria-label="Sidebar" ref={ref}>
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50">
-        <CatoexpressLogo className="h-[5rem] w-[10rem] mx-auto mb-7" fill="#166534" />
+        <CatoexpressLogo className="h-[5rem] w-[10rem] mx-auto mb-7" fill="#0e6d2e" />
         <ul className="space-y-2 font-medium">
           {dataOptionsAside.map((option, index) => <li key={option.label + index}>
             {option.label !== "Módulos" && <LinkAside icon={option.icon} name={option.label} href={option.href} />}

@@ -1,8 +1,12 @@
-import { dataHeaderTable } from "@/data"
 import { ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, Plus, Search, ShoppingCart, SquarePen, Star, Trash2 } from "lucide-react"
-import Image from "next/image"
 
-export const TableProducts = () => {
+import { dataHeaderTable } from "@/data"
+import { getProducts } from "@/services"
+
+export const TableProducts = async () => {
+  const products = await getProducts('ceprobis-ucsm')
+  console.log({ products })
+
   return <section className="bg-gray-50 p-3 sm:p-5 antialiased">
     <div className="mx-auto max-w-screen-2xl px-4 ">
       <div className="bg-white relative shadow-md sm:rounded-lg overflow-hidden">
@@ -41,7 +45,7 @@ export const TableProducts = () => {
                 <h6 className="text-sm font-medium text-black ">Filtros</h6>
                 <div className="flex items-center space-x-3">
                   <a href="#" className="flex items-center text-sm font-medium text-primary-600 hover:underline">Save view</a>
-                  <a href="#" className="flex items-center text-sm font-medium text-primary-600 hover:underline">Clear all</a>
+                  <a href="#" className="flex items-center text-sm font-medium text-primary-600 hover:underline">Limpiar todo</a>
                 </div>
               </div>
               <div id="accordion-flush" data-accordion="collapse">
@@ -54,13 +58,13 @@ export const TableProducts = () => {
                 <div id="price-body" className="hidden" aria-labelledby="price-heading">
                   <div className="flex items-center py-2 space-x-3 font-light border-b border-gray-200">
                     <select id="price-from" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " defaultValue={'From'}>
-                      <option disabled>From</option>
+                      <option disabled>de</option>
                       <option defaultValue={500}>$500</option>
                       <option defaultValue={2500}>$2500</option>
                       <option defaultValue={5000}>$5000</option>
                     </select>
                     <select id="price-to" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 " defaultValue={'to'}>
-                      <option disabled>To</option>
+                      <option disabled>a</option>
                       <option defaultValue={500}>$500</option>
                       <option defaultValue={2500}>$2500</option>
                       <option defaultValue={5000}>$5000</option>
@@ -101,17 +105,17 @@ export const TableProducts = () => {
               </tr>
             </thead>
             <tbody>
-              <tr className="border-b hover:bg-gray-100">
+              {products.map((product, index) => <tr className="border-b hover:bg-gray-100" key={product.product + index}>
                 <td className="p-4 w-4">
                   <div className="flex items-center">
-                    <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 focus:ring-2" />
-                    <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
+                    <input id={product.product} type="checkbox" className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 focus:ring-2" />
+                    <label htmlFor={product.product} className="sr-only">checkbox</label>
                   </div>
                 </td>
                 <th scope="row" className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                   <div className="flex items-center mr-3">
-                    <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/devices/playstation-5.png" alt="iMac Front Image" className="h-8 w-auto mr-3" width={500} height={500}/>
-                    PlayStation 5
+                    <img src={product.image} alt="iMac Front Image" className="h-8 w-auto mr-3" width={500} height={500} />
+                    {product.product}
                   </div>
                 </th>
                 <td className="px-4 py-3">
@@ -120,11 +124,11 @@ export const TableProducts = () => {
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                   <div className="flex items-center">
                     <div className="h-4 w-4 rounded-full inline-block mr-2 bg-green-400"></div>
-                    2435
+                    {product.stock}
                   </div>
                 </td>
-                <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">1.41</td>
-                <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">0.11</td>
+                <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">{product.salesDay}</td>
+                <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">{product.salesMonth}</td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                   <div className="flex items-center">
                     <Star className="w-5 h-5 text-yellow-400" fill="currentColor" />
@@ -132,16 +136,16 @@ export const TableProducts = () => {
                     <Star className="w-5 h-5 text-yellow-400" fill="currentColor" />
                     <Star className="w-5 h-5 text-yellow-400" fill="currentColor" />
                     <Star className="w-5 h-5 text-gray-300" fill="currentColor" />
-                    <span className="text-gray-500 ml-1">4.0</span>
+                    <span className="text-gray-500 ml-1">{product.calification}</span>
                   </div>
                 </td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                   <div className="flex items-center">
                     <ShoppingCart className="w-5 h-5 text-gray-400 mr-2" fill="currentColor" />
-                    2.1M
+                    {product.amountSales}M
                   </div>
                 </td>
-                <td className="px-4 py-3">$4.2M</td>
+                <td className="px-4 py-3">${product.revenue}M</td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                   <div className="flex items-center space-x-4">
                     <button type="button" data-drawer-target="drawer-update-product" data-drawer-show="drawer-update-product" aria-controls="drawer-update-product" className="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">
@@ -158,16 +162,16 @@ export const TableProducts = () => {
                     </button>
                   </div>
                 </td>
-              </tr>
+              </tr>)}
             </tbody>
           </table>
         </div>
         <nav className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4" aria-label="Table navigation">
           <span className="text-sm font-normal text-gray-500">
-            Showing
-            <span className="font-semibold text-gray-900 ">1-10</span>
-            of
-            <span className="font-semibold text-gray-900 ">1000</span>
+            Mostrando
+            <span className="font-semibold text-gray-900 "> 1-10 </span>
+            de
+            <span className="font-semibold text-gray-900 "> 1000 </span>
           </span>
           <ul className="inline-flex items-stretch -space-x-px">
             <li>
