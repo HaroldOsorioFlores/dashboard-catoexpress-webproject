@@ -7,8 +7,7 @@ import { ProductForm } from "../form"
 
 export const UpdateProductDrawer = ({ product }: { product: IProduct }) => {
   const { ref, setVisibleComponent, visibleComponent } = useVisibleComponent(false, true)
-  console.log({ visblecomponentUpdate: visibleComponent })
-  console.log({ product })
+
   return <>
     <button type="button" className="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300" onClick={() => setVisibleComponent(!visibleComponent)}>
       <SquarePen className="h-4 w-4 mr-2 -ml-0.5" />
@@ -28,7 +27,7 @@ export const UpdateProductDrawer = ({ product }: { product: IProduct }) => {
             <span className="sr-only">Close modal</span>
           </button>
         </div>
-        <ProductForm />
+        <ProductForm product={product} />
       </div>
       <span className={` w-screen h-screen absolute bg-[#D9D9D9] opacity-60 z-30 block`} onClick={() => setVisibleComponent(false)}></span>
     </div>
