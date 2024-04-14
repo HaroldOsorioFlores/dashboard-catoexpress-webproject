@@ -1,3 +1,4 @@
+import next from "next";
 import { API_URL } from "./base.api";
 
 export async function getProducts(endpointModule: string): Promise<IProduct[]> {
@@ -7,6 +8,9 @@ export async function getProducts(endpointModule: string): Promise<IProduct[]> {
   const requestOptions = {
     method: "GET",
     headers: headers,
+    next: {
+      tags: ['products']
+    }
   };
 
   try {

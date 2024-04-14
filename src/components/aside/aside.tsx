@@ -9,11 +9,11 @@ import { useVisibleComponent } from "@/hooks"
 export const Aside = () => {
   const { ref, setVisibleComponent, visibleComponent } = useVisibleComponent(false, false)
   return <>
-    <button data-drawer-target="sidebar-multi-level-sidebar" data-drawer-toggle="sidebar-multi-level-sidebar" aria-controls="sidebar-multi-level-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" onClick={() => { setVisibleComponent(!visibleComponent) }}>
+    <button type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200" onClick={() => { setVisibleComponent(!visibleComponent) }}>
       <span className="sr-only">Abrir menu de navegacion</span>
       <Menu />
     </button>
-    <aside id="sidebar-multi-level-sidebar" className={`md:fixed absolute top-0 sm:left-0 ${visibleComponent ? `left-64` : `left-[-200px]`} z-40 w-64 h-screen  -translate-x-full sm:translate-x-0 ease-in shadow-md transition-all`} aria-label="Sidebar" ref={ref}>
+    <aside id="sidebar-multi-level-sidebar" className={`md:fixed absolute top-0 sm:left-0 ${visibleComponent ? `left-64` : `left-[-200px]`} z-20 w-64 h-screen  -translate-x-full sm:translate-x-0 ease-in shadow-md transition-all`} aria-label="Sidebar" ref={ref}>
       <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50">
         <CatoexpressLogo className="h-[5rem] w-[10rem] mx-auto mb-7" fill="#0e6d2e" />
         <ul className="space-y-2 font-medium">

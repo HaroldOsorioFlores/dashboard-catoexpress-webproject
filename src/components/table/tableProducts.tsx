@@ -1,11 +1,13 @@
+
 import { ChevronDown, ChevronLeft, ChevronRight, Eye, Filter, Plus, Search, ShoppingCart, SquarePen, Star, Trash2 } from "lucide-react"
 
 import { dataHeaderTable } from "@/data"
 import { getProducts } from "@/services"
+import { CreateProductModal } from "../modal"
+import { UpdateProductDrawer } from "../drawer"
 
 export const TableProducts = async () => {
   const products = await getProducts('ceprobis-ucsm')
-  console.log({ products })
 
   return <section className="bg-gray-50 p-3 sm:p-5 antialiased">
     <div className="mx-auto max-w-screen-2xl px-4 ">
@@ -31,10 +33,7 @@ export const TableProducts = async () => {
             </form>
           </div>
           <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
-            <button type="button" id="createProductButton" data-modal-toggle="createProductModal" className="flex items-center justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 py-2 focus:outline-none">
-              <Plus className="h-3.5 w-3.5 mr-1.5 -ml-1" />
-              Anadir Producto
-            </button>
+            <CreateProductModal />
             <button id="filterDropdownButton" data-dropdown-toggle="filterDropdown" className="w-full md:w-auto flex items-center justify-center py-2 px-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200" type="button">
               <Filter className="h-4 w-4 mr-1.5 -ml-1 text-gray-400" fill="currentColor" />
               Filtrar opciones
@@ -118,9 +117,6 @@ export const TableProducts = async () => {
                     {product.product}
                   </div>
                 </th>
-                <td className="px-4 py-3">
-                  <span className="bg-primary-100 text-primary-800 text-xs font-medium px-2 py-0.5 rounded">Console</span>
-                </td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                   <div className="flex items-center">
                     <div className="h-4 w-4 rounded-full inline-block mr-2 bg-green-400"></div>
@@ -148,15 +144,12 @@ export const TableProducts = async () => {
                 <td className="px-4 py-3">${product.revenue}M</td>
                 <td className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap ">
                   <div className="flex items-center space-x-4">
-                    <button type="button" data-drawer-target="drawer-update-product" data-drawer-show="drawer-update-product" aria-controls="drawer-update-product" className="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300">
-                      <SquarePen className="h-4 w-4 mr-2 -ml-0.5" />
-                      Editar
-                    </button>
-                    <button type="button" data-drawer-target="drawer-read-product-advanced" data-drawer-show="drawer-read-product-advanced" aria-controls="drawer-read-product-advanced" className="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200">
+                    <UpdateProductDrawer product={{ ...product }} />
+                    <button type="button" className="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200">
                       <Eye className="w-4 h-4 mr-2 -ml-0.5" />
                       Revisar
                     </button>
-                    <button type="button" data-modal-target="delete-modal" data-modal-toggle="delete-modal" className="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center">
+                    <button type="button" className="flex items-center text-red-700 hover:text-white border border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 text-center">
                       <Trash2 className="h-4 w-4 mr-2 -ml-0.5" />
                       Eliminar
                     </button>

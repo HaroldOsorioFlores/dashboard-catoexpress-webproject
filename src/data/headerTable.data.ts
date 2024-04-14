@@ -3,9 +3,6 @@ export const dataHeaderTable = [
     name: "Producto,",
   },
   {
-    name: "Categoria",
-  },
-  {
     name: "Stock",
   },
   {

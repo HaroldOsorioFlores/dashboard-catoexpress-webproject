@@ -6,7 +6,7 @@ interface IFomModal {
   children: React.ReactNode;
   setIsComponentVisible: React.Dispatch<React.SetStateAction<boolean>>;
   isComponentVisible: boolean;
-  className?: { classNameContainer?: string }
+  className?: { classNameContainer?: string, classNameContainerBox?: string }
 }
 
 export const Modal = forwardRef(function FormModal({
@@ -21,7 +21,7 @@ export const Modal = forwardRef(function FormModal({
       {isComponentVisible && (
         <div
           id="authentication-modal"
-          className="fixed z-30 left-0 top-0 w-screen h-screen text-[#25282A]  "
+          className={`fixed z-30 left-0 top-0 w-screen h-screen text-[#25282A] ${className?.classNameContainerBox}`}
         >
           <div className="relative w-full h-full flex justify-center items-center">
             <div
@@ -43,7 +43,7 @@ export const Modal = forwardRef(function FormModal({
                 {children}
               </div>
             </div>
-            <span className={`top-0 w-full h-full absolute bg-[#D9D9D9] opacity-60`} onClick={() => setIsComponentVisible(false)}></span>
+            <span className={` w-screen h-screen absolute bg-[#D9D9D9] opacity-60`} onClick={() => setIsComponentVisible(false)}></span>
           </div>
         </div>
       )}
