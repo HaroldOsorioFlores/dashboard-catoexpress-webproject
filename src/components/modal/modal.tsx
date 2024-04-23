@@ -2,7 +2,7 @@ import { ForwardedRef, forwardRef } from "react";
 import { twMerge } from "tailwind-merge";
 import { X } from "lucide-react";
 
-interface IFomModal {
+interface IModal {
   children: React.ReactNode;
   setIsComponentVisible: React.Dispatch<React.SetStateAction<boolean>>;
   isComponentVisible: boolean;
@@ -14,7 +14,7 @@ export const Modal = forwardRef(function FormModal({
   isComponentVisible,
   setIsComponentVisible,
   className,
-}: IFomModal, ref: ForwardedRef<HTMLDivElement>
+}: IModal, ref: ForwardedRef<HTMLDivElement>
 ) {
   return (
     <>

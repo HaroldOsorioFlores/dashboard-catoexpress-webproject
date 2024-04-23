@@ -9,4 +9,6 @@ interface IProduct {
   amountSales: string;
   revenue: string;
   id: string;
+  description: string;
+  price: string;
 }
