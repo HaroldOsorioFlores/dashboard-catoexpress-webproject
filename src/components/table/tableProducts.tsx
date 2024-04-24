@@ -1,8 +1,6 @@
 import {
-  ChevronDown,
   ChevronLeft,
   ChevronRight,
-  Filter,
   Search,
   ShoppingCart,
   Star,
@@ -14,7 +12,7 @@ import { dataHeaderTable } from "@/data";
 import { getProducts } from "@/services";
 import { CreateProductModal } from "../modal";
 import { ReviewProductDrawer, UpdateProductDrawer } from "../drawer";
-import { StyledButton } from "../ui";
+import { FilterTableDropdown } from "../ui";
 
 export const TableProducts = async () => {
   const products = await getProducts("ceprobis-ucsm");
@@ -54,142 +52,13 @@ export const TableProducts = async () => {
             </div>
             <div className="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
               <CreateProductModal />
-              <StyledButton
-                option="secondary"
-                icon={{
-                  element: (
-                    <Filter
-                      className="h-4 w-4 text-gray-400"
-                      fill="currentColor"
-                    />
-                  ),
-                  direction: "left",
-                }}
-                className="text-gray-600 hover:text-primary-700 group"
-              >
-                Filtrar opciones
-                <ChevronDown className="w-5 h-5" />
-              </StyledButton>
-              <div
-                id="filterDropdown"
-                className="z-10 hidden px-3 pt-1 bg-white rounded-lg shadow w-80 right-0"
-              >
-                <div className="flex items-center justify-between pt-2">
-                  <h6 className="text-sm font-medium text-black ">Filtros</h6>
-                  <div className="flex items-center space-x-3">
-                    <a
-                      href="#"
-                      className="flex items-center text-sm font-medium text-primary-600 hover:underline"
-                    >
-                      Save view
-                    </a>
-                    <a
-                      href="#"
-                      className="flex items-center text-sm font-medium text-primary-600 hover:underline"
-                    >
-                      Limpiar todo
-                    </a>
-                  </div>
-                </div>
-                <div id="accordion-flush" data-accordion="collapse">
-                  <h2 id="price-heading">
-                    <button
-                      type="button"
-                      className="flex items-center justify-between w-full py-2 px-1.5 text-sm font-medium text-left text-gray-500 border-b border-gray-200 hover:bg-gray-50"
-                      data-accordion-target="#price-body"
-                      aria-expanded="true"
-                      aria-controls="price-body"
-                    >
-                      <span>Precio</span>
-                      <ChevronDown className="w-5 h-5 rotate-180 shrink-0" />
-                    </button>
-                  </h2>
-                  <div
-                    id="price-body"
-                    className="hidden"
-                    aria-labelledby="price-heading"
-                  >
-                    <div className="flex items-center py-2 space-x-3 font-light border-b border-gray-200">
-                      <select
-                        id="price-from"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                        defaultValue={"From"}
-                      >
-                        <option disabled>de</option>
-                        <option defaultValue={500}>$500</option>
-                        <option defaultValue={2500}>$2500</option>
-                        <option defaultValue={5000}>$5000</option>
-                      </select>
-                      <select
-                        id="price-to"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 "
-                        defaultValue={"to"}
-                      >
-                        <option disabled>a</option>
-                        <option defaultValue={500}>$500</option>
-                        <option defaultValue={2500}>$2500</option>
-                        <option defaultValue={5000}>$5000</option>
-                      </select>
-                    </div>
-                  </div>
-                  <h2 id="rating-heading">
-                    <button
-                      type="button"
-                      className="flex items-center justify-between w-full py-2 px-1.5 text-sm font-medium text-left text-gray-500 hover:bg-gray-50"
-                      data-accordion-target="#rating-body"
-                      aria-expanded="true"
-                      aria-controls="rating-body"
-                    >
-                      <span>Rating</span>
-                      <ChevronDown className="w-5 h-5 rotate-180 shrink-0" />
-                    </button>
-                  </h2>
-                  <div
-                    id="rating-body"
-                    className="hidden"
-                    aria-labelledby="rating-heading"
-                  >
-                    <div className="py-2 space-y-2 font-light border-b border-gray-200">
-                      <div className="flex items-center">
-                        <input
-                          id="five-stars"
-                          type="radio"
-                          defaultValue=""
-                          name="rating"
-                          className="w-4 h-4 bg-gray-100 border-gray-300 text-primary-600 focus:ring-primary-500 focus:ring-2"
-                        />
-                        <label
-                          htmlFor="five-stars"
-                          className="flex items-center ml-2"
-                        >
-                          <Star
-                            className="w-5 h-5 text-yellow-400"
-                            fill="currentColor"
-                          />
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <FilterTableDropdown />
             </div>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-sm text-left text-gray-500">
               <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                  <th scope="col" className="p-4">
-                    <div className="flex items-center">
-                      <input
-                        id="checkbox-all"
-                        type="checkbox"
-                        className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 focus:ring-2"
-                      />
-                      <label htmlFor="checkbox-all" className="sr-only">
-                        checkbox
-                      </label>
-                    </div>
-                  </th>
                   {dataHeaderTable.map((item, index) => (
                     <th scope="col" className="p-4" key={item.name + index}>
                       {item.name}
@@ -203,18 +72,6 @@ export const TableProducts = async () => {
                     className="border-b hover:bg-gray-100"
                     key={product.product + index}
                   >
-                    <td className="p-4 w-4">
-                      <div className="flex items-center">
-                        <input
-                          id={product.product}
-                          type="checkbox"
-                          className="w-4 h-4 text-primary-600 bg-gray-100 rounded border-gray-300 focus:ring-primary-500 focus:ring-2"
-                        />
-                        <label htmlFor={product.product} className="sr-only">
-                          checkbox
-                        </label>
-                      </div>
-                    </td>
                     <th
                       scope="row"
                       className="px-4 py-3 font-medium text-gray-900 whitespace-nowrap "

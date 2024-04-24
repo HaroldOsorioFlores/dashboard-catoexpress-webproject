@@ -2,10 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export function useVisibleComponent(
-  initialValue: boolean,
-  simple?: boolean
-) {
+export function useVisibleComponent(initialValue: boolean, simple?: boolean) {
   const [visibleComponent, setVisibleComponent] =
     useState<boolean>(initialValue);
 
@@ -32,9 +29,10 @@ export function useVisibleComponent(
     if (!simple) document.addEventListener("click", handleClickOutside, true);
     return () => {
       document.removeEventListener("keydown", handleHideDropdown, true);
-      if (!simple) document.addEventListener("click", handleClickOutside, true);
+      if (!simple)
+        document.removeEventListener("click", handleClickOutside, true);
     };
-  });
+  }, [simple]);
   return {
     visibleComponent,
     ref,
