@@ -1,10 +1,10 @@
 "use client";
 
 import { ChevronDown, Filter, Star } from "lucide-react";
+import { useState } from "react";
 
 import { StyledButton } from "../buttons";
 import { useVisibleComponent } from "@/hooks";
-import { useState } from "react";
 
 export const FilterTableDropdown = () => {
   const { ref, setVisibleComponent, visibleComponent } = useVisibleComponent(

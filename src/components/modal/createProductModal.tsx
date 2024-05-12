@@ -1,7 +1,6 @@
 "use client";
 
 import { Plus } from "lucide-react";
-import { useState } from "react";
 
 import { useVisibleComponent } from "@/hooks";
 import { Modal } from "./modal";

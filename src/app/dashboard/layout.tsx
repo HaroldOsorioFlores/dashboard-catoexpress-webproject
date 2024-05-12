@@ -7,8 +7,10 @@ export default function DashboardLayout({
 }>) {
   return (
     <>
-      <Aside />
-      <NavbarDashboard />
+      <div className="flex flex-row justify-between sm:flex-col ">
+        <Aside />
+        <NavbarDashboard />
+      </div>
       {children}
     </>
   );

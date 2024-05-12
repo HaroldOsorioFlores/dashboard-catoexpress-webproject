@@ -1,4 +1,4 @@
-export const dataHeaderTable = [
+export const dataHeaderTableProducts = [
   {
     name: "Producto,",
   },
@@ -19,6 +19,21 @@ export const dataHeaderTable = [
   },
   {
     name: "Ganancia",
+  },
+  {
+    name: "Opciones",
+  },
+];
+
+export const dataHeaderTableUsers = [
+  {
+    name: "Usuario",
+  },
+  {
+    name: "Cargo",
+  },
+  {
+    name: "Telefono",
   },
   {
     name: "Opciones",
